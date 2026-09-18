@@ -37,13 +37,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable} bg-background`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${GeistPixelSquare.variable} bg-background dark`}
     >
       <head>
         {/* Product photos come from the Shopify CDN; connect early. */}
         <link rel="preconnect" href="https://cdn.shopify.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased cyber-grid text-foreground">
+        <div className="scanlines fixed inset-0 z-50 pointer-events-none mix-blend-overlay opacity-30"></div>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
