@@ -33,7 +33,11 @@ export function Game() {
             <Joystick />
           </div>
           <div className="pointer-events-auto">
-            <button className="w-16 h-16 rounded-full bg-black/80 neon-border flex items-center justify-center text-white neon-glow shadow-[0_0_15px_#00ffff]">
+            <button 
+              onPointerDown={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: ' ' }))}
+              onPointerUp={() => window.dispatchEvent(new KeyboardEvent('keyup', { key: ' ' }))}
+              className="w-16 h-16 rounded-full bg-black/80 neon-border flex items-center justify-center text-white neon-glow shadow-[0_0_15px_#00ffff]"
+            >
               JUMP
             </button>
           </div>
