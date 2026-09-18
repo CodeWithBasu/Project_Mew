@@ -58,7 +58,7 @@ export function AboutDialog({
       onClick={onClose}
     >
       <div
-        className="flex max-h-[84vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/18 bg-[#151b28]/80 shadow-[0_22px_70px_rgba(0,0,0,0.28)] backdrop-blur-2xl duration-300 animate-in slide-in-from-bottom-4 sm:rounded-3xl sm:zoom-in-95"
+        className="flex max-h-[84vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border neon-border bg-[#050b14]/90 shadow-[0_22px_70px_rgba(0,0,0,0.8)] backdrop-blur-3xl duration-300 animate-in slide-in-from-bottom-4 sm:rounded-3xl sm:zoom-in-95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header with the town guide NPC */}
@@ -82,7 +82,7 @@ export function AboutDialog({
               >
                 <Info className="h-4 w-4 text-white" />
               </span>
-              <h2 className="font-pixel text-2xl leading-none text-foreground">About us</h2>
+              <h2 className="font-pixel text-2xl leading-none text-primary neon-glow">About us</h2>
             </div>
             <p className="mt-1 text-sm font-semibold text-foreground">Pixel, the town guide</p>
             {/* Speech bubble */}
