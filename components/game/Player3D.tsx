@@ -86,7 +86,7 @@ export function Player3D() {
   return (
     <RigidBody
       ref={bodyRef}
-      colliders="capsule"
+      colliders="cuboid"
       mass={1}
       position={[0, 2, 0]}
       lockRotations // Keep the player upright
