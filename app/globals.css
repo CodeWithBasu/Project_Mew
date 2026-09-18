@@ -138,6 +138,42 @@
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
+  
+  /* Cyberpunk / Futuristic Utilities */
+  .neon-glow {
+    text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary), 0 0 20px var(--primary);
+  }
+  .neon-glow-secondary {
+    text-shadow: 0 0 5px var(--secondary), 0 0 10px var(--secondary), 0 0 20px var(--secondary);
+  }
+  .neon-box-glow {
+    box-shadow: 0 0 10px var(--primary), inset 0 0 10px var(--primary);
+  }
+  .neon-border {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 5px var(--primary), inset 0 0 5px var(--primary);
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(to right, oklch(0.3 0.1 280 / 20%) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.3 0.1 280 / 20%) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center;
+  }
+
+  .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.2) 50%,
+      rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+  }
+  
   .game-cursor,
   .game-cursor * {
     cursor: url('/game-cursor.svg') 6 3, default;
