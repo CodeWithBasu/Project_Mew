@@ -69,12 +69,11 @@ export function Player3D() {
       keys.current.space = false
     }
 
-    // Third-person camera tracking
-    const idealCameraOffset = new THREE.Vector3(0, 3, 5)
-    idealCameraOffset.applyQuaternion(camera.quaternion)
+    // Third-person camera tracking - fixed offset behind and slightly above the player
+    const idealCameraOffset = new THREE.Vector3(0, 4, 8)
     idealCameraOffset.add(translation)
     
-    const idealLookAt = new THREE.Vector3(translation.x, translation.y + 1, translation.z)
+    const idealLookAt = new THREE.Vector3(translation.x, translation.y, translation.z)
 
     currentCameraPosition.lerp(idealCameraOffset, 0.1)
     currentCameraLookAt.lerp(idealLookAt, 0.1)
