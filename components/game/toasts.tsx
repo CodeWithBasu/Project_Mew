@@ -71,7 +71,7 @@ export function GameToasts({
             key={t.id}
             style={{
               borderColor: `${accent}66`,
-              boxShadow: `0 0 0 2px #0b0f17, 0 6px 0 0 ${accent}33, 0 10px 24px rgba(0,0,0,0.5)`,
+              boxShadow: `0 0 5px ${accent}, inset 0 0 5px ${accent}`,
             }}
             className="pointer-events-auto relative overflow-hidden rounded-md border-2 bg-[#10151f]/95 backdrop-blur duration-300 animate-in fade-in slide-in-from-right-4"
           >
