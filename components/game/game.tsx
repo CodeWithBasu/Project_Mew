@@ -2174,16 +2174,16 @@ export function Game({
 
       {/* top HUD */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-start justify-between gap-3 p-3">
-        <div className="relative max-w-[55vw] overflow-hidden rounded-2xl border border-white/15 bg-[#0c1320]/45 px-3 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:max-w-md md:px-4 md:py-2.5">
+        <div className="relative max-w-[55vw] overflow-hidden rounded-2xl border neon-border bg-[#050b14]/75 px-3 py-2 shadow-primary backdrop-blur-3xl md:max-w-md md:px-4 md:py-2.5">
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.08] via-transparent to-black/20"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-black/20"
           />
-          <h1 className="relative truncate font-pixel text-lg leading-none text-primary md:text-2xl">
+          <h1 className="relative truncate font-pixel text-lg leading-none text-primary neon-glow md:text-2xl">
             {shop?.name ?? 'Fashion District'}
           </h1>
           {scene !== 'world' && (
-            <p className="relative mt-1.5 truncate text-sm text-muted-foreground">
+            <p className="relative mt-1.5 truncate text-sm text-primary/70">
               {inside?.id === 'info' ? 'Checkout Stand' : `${inside?.name ?? ''} shop`}
             </p>
           )}
@@ -2197,12 +2197,12 @@ export function Game({
         type="button"
         onClick={() => setCartOpen(true)}
         aria-label="Open bag and checkout"
-        className="pointer-events-auto absolute right-3 top-3 z-30 flex h-10 items-center gap-1.5 rounded-xl border-2 border-primary bg-primary px-3 font-pixel text-xs text-primary-foreground shadow-[0_6px_0_0_rgba(0,0,0,0.4)] transition active:translate-y-0.5 active:shadow-[0_3px_0_0_rgba(0,0,0,0.4)] md:bottom-3 md:top-auto md:h-12 md:gap-2 md:px-4 md:text-sm"
+        className="pointer-events-auto absolute right-3 top-3 z-30 flex h-10 items-center gap-1.5 rounded-xl border-2 border-primary neon-box-glow bg-primary/20 backdrop-blur-md px-3 font-pixel text-xs text-primary shadow-primary transition hover:bg-primary/40 active:translate-y-0.5 active:shadow-none md:bottom-3 md:top-auto md:h-12 md:gap-2 md:px-4 md:text-sm"
       >
         <ShoppingBag className="h-5 w-5" />
         <span className="leading-none">CHECKOUT</span>
         {cart > 0 && (
-          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-foreground px-1.5 font-pixel text-[10px] leading-none text-primary shadow-[0_2px_0_0_rgba(0,0,0,0.25)]">
+          <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1.5 font-pixel text-[10px] leading-none text-primary-foreground shadow-[0_2px_0_0_rgba(0,0,0,0.25)]">
             {cart}
           </span>
         )}
