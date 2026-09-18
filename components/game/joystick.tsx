@@ -81,7 +81,7 @@ export function Joystick({ onPress, onAction, actionEnabled, actionLabel }: Prop
       {/* arcade joystick */}
       <div
         ref={baseRef}
-        className="pointer-events-auto relative touch-none select-none rounded-full border border-white/15 bg-[#0c1320]/70 shadow-[0_10px_34px_rgba(0,0,0,0.5)] backdrop-blur-sm"
+        className="pointer-events-auto relative touch-none select-none rounded-full border neon-border bg-[#050b14]/90 shadow-primary backdrop-blur-sm"
         style={{ width: BASE, height: BASE }}
         onPointerDown={(e) => {
           e.preventDefault()
@@ -110,15 +110,15 @@ export function Joystick({ onPress, onAction, actionEnabled, actionLabel }: Prop
         aria-label="Move joystick"
       >
         {/* inner gate ring */}
-        <div className="pointer-events-none absolute inset-2 rounded-full border border-white/8" />
+        <div className="pointer-events-none absolute inset-2 rounded-full border border-primary/30" />
         {/* directional tick marks for that arcade gate look */}
-        <span className="pointer-events-none absolute left-1/2 top-2 h-2 w-[2px] -translate-x-1/2 rounded bg-white/25" />
-        <span className="pointer-events-none absolute bottom-2 left-1/2 h-2 w-[2px] -translate-x-1/2 rounded bg-white/25" />
-        <span className="pointer-events-none absolute left-2 top-1/2 h-[2px] w-2 -translate-y-1/2 rounded bg-white/25" />
-        <span className="pointer-events-none absolute right-2 top-1/2 h-[2px] w-2 -translate-y-1/2 rounded bg-white/25" />
+        <span className="pointer-events-none absolute left-1/2 top-2 h-2 w-[2px] -translate-x-1/2 rounded bg-primary/60" />
+        <span className="pointer-events-none absolute bottom-2 left-1/2 h-2 w-[2px] -translate-x-1/2 rounded bg-primary/60" />
+        <span className="pointer-events-none absolute left-2 top-1/2 h-[2px] w-2 -translate-y-1/2 rounded bg-primary/60" />
+        <span className="pointer-events-none absolute right-2 top-1/2 h-[2px] w-2 -translate-y-1/2 rounded bg-primary/60" />
         {/* thumbstick knob */}
         <div
-          className="absolute left-1/2 top-1/2 rounded-full border-2 border-primary bg-gradient-to-b from-primary to-primary/80 shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+          className="absolute left-1/2 top-1/2 rounded-full border-2 border-primary bg-primary/20 neon-box-glow shadow-primary"
           style={{
             width: KNOB,
             height: KNOB,
@@ -126,14 +126,14 @@ export function Joystick({ onPress, onAction, actionEnabled, actionLabel }: Prop
             transition: dragging ? 'none' : 'transform 130ms ease-out',
           }}
         >
-          <div className="absolute inset-[6px] rounded-full bg-white/15" />
+          <div className="absolute inset-[6px] rounded-full bg-primary/40" />
         </div>
       </div>
 
       {/* action button */}
       <div className="pointer-events-none flex flex-col items-center gap-1.5">
         {actionEnabled && (
-          <span className="font-pixel rounded-full border border-white/12 bg-black/55 px-2.5 py-1 text-[9px] text-white/85 backdrop-blur-sm">
+          <span className="font-pixel rounded-full border neon-border bg-black/75 px-2.5 py-1 text-[9px] text-primary neon-glow backdrop-blur-sm">
             {actionLabel}
           </span>
         )}
@@ -144,7 +144,7 @@ export function Joystick({ onPress, onAction, actionEnabled, actionLabel }: Prop
             e.preventDefault()
             if (actionEnabled) onAction()
           }}
-          className="font-pixel pointer-events-auto h-20 w-20 rounded-full border-2 border-primary bg-gradient-to-b from-primary to-primary/80 text-base text-primary-foreground shadow-[0_8px_22px_rgba(0,0,0,0.5)] transition active:scale-90 disabled:border-white/12 disabled:from-card/60 disabled:to-card/60 disabled:text-muted-foreground disabled:shadow-none"
+          className="font-pixel pointer-events-auto h-20 w-20 rounded-full border-2 border-primary bg-primary/20 text-base text-primary neon-box-glow shadow-primary transition hover:bg-primary/40 active:scale-90 disabled:border-white/12 disabled:from-card/60 disabled:to-card/60 disabled:text-muted-foreground disabled:shadow-none"
           aria-label={actionLabel}
         >
           A
