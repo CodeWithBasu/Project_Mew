@@ -106,7 +106,7 @@ function ProductCard({
     // Mobile: compact horizontal row (photo left, info right) so the list
     // scans fast and nothing strands. Desktop (sm+): the vertical grid card.
     <div
-      className="group flex flex-row items-center gap-3 overflow-hidden rounded-2xl border border-white/12 bg-white/[0.055] p-2 shadow-[0_12px_28px_rgba(0,0,0,0.22)] transition-all duration-200 hover:bg-white/[0.09] sm:min-h-[244px] sm:flex-col sm:items-stretch sm:gap-0 sm:rounded-3xl sm:p-0 sm:hover:-translate-y-1 sm:hover:shadow-[0_18px_38px_rgba(0,0,0,0.32)]"
+      className="group flex flex-row items-center gap-3 overflow-hidden rounded-2xl border border-primary/30 bg-black/40 p-2 shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300 hover:bg-primary/10 hover:neon-box-glow sm:min-h-[244px] sm:flex-col sm:items-stretch sm:gap-0 sm:rounded-3xl sm:p-0 sm:hover:-translate-y-1"
       style={{ ['--card-accent' as string]: accent }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = `${accent}66`
@@ -250,7 +250,7 @@ export function ShopDialog({
       onClick={onClose}
     >
       <div
-        className="relative flex max-h-[88dvh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-white/20 bg-[#0c1320]/55 shadow-[0_22px_70px_rgba(0,0,0,0.5)] backdrop-blur-2xl duration-300 animate-in zoom-in-95 fade-in sm:max-h-[84dvh]"
+        className="relative flex max-h-[88dvh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border neon-border bg-[#050b14]/85 shadow-[0_22px_70px_rgba(0,0,0,0.8)] backdrop-blur-3xl duration-300 animate-in zoom-in-95 fade-in sm:max-h-[84dvh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* glass sheen: a faint top highlight + soft vignette so the blurred
@@ -280,7 +280,7 @@ export function ShopDialog({
               >
                 <Icon className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
               </span>
-              <h2 className="truncate font-pixel text-lg leading-none text-foreground sm:text-2xl">
+              <h2 className="truncate font-pixel text-lg leading-none text-primary neon-glow sm:text-2xl">
                 {category.name}
               </h2>
               {category.products.length > 0 && (
