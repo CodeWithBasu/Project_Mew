@@ -74,15 +74,15 @@ export type PlayerLook = {
 // blades are still rendered once into tileable patterns.
 
 const GRASS_PALETTE = {
-  soil: '#6b5831',
-  under: '#3f7f39',
-  base: '#5cab45',
-  mid: '#75bf55',
-  light: '#9ade70',
-  yellow: '#d2d864',
-  blue: '#82bfd8',
-  shadow: '#2e6634',
-  bloom: ['#fff9d7', '#f4d76f', '#dce9ff', '#f6c7da', '#dff0c4'],
+  soil: '#050b14',
+  under: '#0a192f',
+  base: '#0c2242',
+  mid: '#112240',
+  light: '#00ffff',
+  yellow: '#ff00ff',
+  blue: '#00ffcc',
+  shadow: '#020c1b',
+  bloom: ['#00ffff', '#ff00ff', '#00ff00', '#bf00ff', '#ffff00'],
 } as const
 
 const GRASS_TEX = 448
@@ -464,11 +464,11 @@ export function drawGrassFlora(
 export type PathEdges = { ne?: boolean; nw?: boolean; se?: boolean; sw?: boolean }
 
 const DIRT_PALETTE = {
-  base: '#c9aa76',
-  warm: '#d6ba86',
-  cool: '#b99764',
-  dark: '#8f7049',
-  stone: '#a79f8f',
+  base: '#1a1b26',
+  warm: '#24283b',
+  cool: '#1f2335',
+  dark: '#050b14',
+  stone: '#3e4452',
 } as const
 
 const DIRT_TEX = 384
