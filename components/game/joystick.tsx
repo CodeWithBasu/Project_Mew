@@ -106,7 +106,7 @@ export function Joystick() {
           style={{
             width: KNOB,
             height: KNOB,
-            transform: 	ranslate(calc(-50% + px), calc(-50% + px)),
+            transform: `translate(calc(-50% + ${knob.x}px), calc(-50% + ${knob.y}px))`,
             transition: dragging ? 'none' : 'transform 130ms ease-out',
           }}
         >
