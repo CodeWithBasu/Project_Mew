@@ -261,9 +261,9 @@ export function PlayerCustomizer({
         }}
       />
 
-      <div className="relative rounded-2xl border border-white/16 bg-[#111827]/85 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.5)] backdrop-blur-2xl backdrop-saturate-150 sm:p-5">
+      <div className="relative rounded-2xl border neon-border bg-[#050b14]/90 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.8)] backdrop-blur-3xl backdrop-saturate-150 sm:p-5">
         <header className="mb-3">
-          <h2 className="font-pixel text-balance text-xl leading-none text-primary">Build Your Player</h2>
+          <h2 className="font-pixel text-balance text-xl leading-none text-primary neon-glow">Build Your Player</h2>
         </header>
 
         {/* stage: avatar under its live in-game nametag, exactly as it will
@@ -399,9 +399,9 @@ export function PlayerCustomizer({
               type="button"
               onClick={onStart}
               disabled={!canStart}
-              className="font-pixel group flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm text-primary-foreground shadow-[0_4px_0_0_rgba(0,0,0,0.35)] transition-all hover:brightness-[1.07] active:translate-y-0.5 active:shadow-[0_2px_0_0_rgba(0,0,0,0.35)] disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-muted-foreground disabled:shadow-none sm:px-8"
+              className="font-pixel group flex h-12 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm text-primary-foreground neon-box-glow shadow-primary transition-all hover:brightness-[1.2] active:translate-y-0.5 active:shadow-none disabled:cursor-not-allowed disabled:bg-white/10 disabled:text-muted-foreground disabled:shadow-none sm:px-8"
             >
-              {starting ? 'Checking...' : 'Enter Store'}
+              {starting ? 'Initializing...' : 'Uplink'}
               {!starting && (
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               )}
