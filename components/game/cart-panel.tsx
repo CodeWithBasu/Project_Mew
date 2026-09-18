@@ -24,12 +24,12 @@ const FREE_SHIP_THRESHOLD = 200
 
 // The cashier NPC who runs the checkout counter.
 const CASHIER_NAME = 'Penny the Cashier'
-const CASHIER_COLOR = '#f0b341'
+const CASHIER_COLOR = '#ff0055' // Neon pink
 
-// Wood palette for the stall structure (matches the in-game counters).
-const WOOD = '#8a6038'
-const WOOD_DARK = '#5f4026'
-const WOOD_LIGHT = '#caa066'
+// Metal/Neon palette for the stall structure
+const WOOD = '#1a1b26'
+const WOOD_DARK = '#101014'
+const WOOD_LIGHT = '#24283b'
 
 /* ---------- decorative stall pieces ---------- */
 
@@ -156,13 +156,13 @@ export function CartPanel({
       onClick={onClose}
     >
       <div
-        className="relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-white/20 bg-[#0c1320]/60 pb-[env(safe-area-inset-bottom)] shadow-[0_22px_70px_rgba(0,0,0,0.55)] backdrop-blur-2xl duration-300 animate-in slide-in-from-bottom-4 sm:max-h-[88dvh] sm:rounded-3xl sm:pb-0 sm:zoom-in-95"
+        className="relative flex max-h-[92dvh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border neon-border bg-[#050b14]/90 pb-[env(safe-area-inset-bottom)] shadow-[0_22px_70px_rgba(0,0,0,0.8)] backdrop-blur-3xl duration-300 animate-in slide-in-from-bottom-4 sm:max-h-[88dvh] sm:rounded-3xl sm:pb-0 sm:zoom-in-95"
         onClick={(e) => e.stopPropagation()}
       >
         {/* glass sheen, same treatment as the vendor shops */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-white/[0.08] via-transparent to-black/25"
+          className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-primary/10 via-transparent to-black/40"
         />
 
         {/* ===== stall top: awning + cashier framed by the wooden posts.
@@ -222,7 +222,7 @@ export function CartPanel({
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <h2 className="truncate font-pixel text-base leading-none text-foreground sm:text-lg">
+              <h2 className="truncate font-pixel text-base leading-none text-primary neon-glow sm:text-lg">
                 Checkout
               </h2>
               {count > 0 && (
@@ -457,15 +457,15 @@ export function CartPanel({
               type="button"
               onClick={handleCheckout}
               disabled={loading}
-              className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-pixel text-sm text-primary-foreground shadow-[0_5px_0_0_rgba(0,0,0,0.35)] transition hover:brightness-[1.06] active:translate-y-0.5 active:shadow-[0_2px_0_0_rgba(0,0,0,0.35)] disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-pixel text-sm text-primary-foreground neon-box-glow shadow-primary transition hover:brightness-[1.2] active:translate-y-0.5 active:shadow-none disabled:cursor-not-allowed disabled:opacity-70"
             >
               {loading ? (
                 <>
-                  <Loader2 className="h-4 w-4 animate-spin" /> Starting checkout...
+                  <Loader2 className="h-4 w-4 animate-spin" /> Uplinking...
                 </>
               ) : (
                 <>
-                  Pay now · {formatPrice(subtotal)}
+                  Execute Transfer · {formatPrice(subtotal)}
                   <ArrowRight className="h-4 w-4" />
                 </>
               )}
