@@ -1181,7 +1181,7 @@ export function Game({
     }
     function down(e: KeyboardEvent) {
       if (isTyping(e)) return
-      const k = e.key.toLowerCase()
+      const k = (e.key || '').toLowerCase()
       // "/" opens the Figma-style chat input.
       if (k === '/') {
         setChatOpen(true)
@@ -1200,7 +1200,7 @@ export function Game({
       }
     }
     function up(e: KeyboardEvent) {
-      const k = e.key.toLowerCase()
+      const k = (e.key || '').toLowerCase()
       // Sync run state on every release, even while focus is in an input,
       // otherwise a missed Shift keyup leaves the player sprinting.
       running.current = e.shiftKey
