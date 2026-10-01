@@ -2212,21 +2212,7 @@ export function Game({
           layouts where the joystick owns the bottom-left corner. */}
       {started && (
         <div className="absolute bottom-3 left-3 z-10 hidden flex-col items-start gap-2 md:flex">
-          <a
-            href="https://v0.app/templates/shopify-game-template-POTUjcFaXwG"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Build your own store game — Open in v0"
-            className="pointer-events-auto inline-flex items-center gap-2 rounded-lg border border-white/15 bg-[#0c1320]/45 px-3 py-2 text-[11px] text-muted-foreground shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-2xl transition-colors hover:border-primary hover:text-foreground"
-          >
-            <span>Build your own</span>
-            <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
-              Open in
-              <span className="inline-flex items-center justify-center rounded bg-foreground px-1.5 py-0.5 font-pixel text-[10px] leading-none text-[#0c1320]">
-                v0
-              </span>
-            </span>
-          </a>
+
           <div className="pointer-events-none hidden rounded-lg border border-white/15 bg-[#0c1320]/45 px-3 py-2 text-[11px] text-muted-foreground shadow-[0_8px_30px_rgba(0,0,0,0.4)] backdrop-blur-2xl md:block">
             <span className="text-foreground">WASD / arrows</span> move ·{' '}
             <span className="text-foreground">Shift</span> run ·{' '}
