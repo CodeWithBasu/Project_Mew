@@ -12,6 +12,11 @@ import {
   Tags,
   Maximize2,
   Info,
+  Book,
+  Coffee,
+  Heart,
+  Home,
+  Trophy,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { PixelAvatar } from './pixel-avatar'
@@ -25,6 +30,11 @@ const ICONS = {
   hat: Badge,
   bag: ShoppingBag,
   info: Info,
+  book: Book,
+  coffee: Coffee,
+  heart: Heart,
+  home: Home,
+  trophy: Trophy,
 } as const
 
 function ProductCard({

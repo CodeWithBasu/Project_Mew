@@ -40,7 +40,7 @@ export function sansFontFamily(): string {
 }
 
 // A branded shopping bag the character carries after buying something.
-export type StoreIcon = 'shirt' | 'shoe' | 'hoodie' | 'pants' | 'hat' | 'bag' | 'info'
+export type StoreIcon = 'shirt' | 'shoe' | 'hoodie' | 'pants' | 'hat' | 'bag' | 'info' | 'book' | 'coffee' | 'heart' | 'home' | 'trophy'
 export type BagItem = { icon: StoreIcon; color: string }
 export type PlayerBody = 'man' | 'woman'
 export type HairStyle = 'short' | 'bob' | 'long' | 'curly' | 'buzz' | 'ponytail'
@@ -712,75 +712,44 @@ function lerpPoint(a: Vec2, b: Vec2, t: number): Vec2 {
   return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t }
 }
 
-function drawPathGrassEdge(
+function drawPathCurb(
   ctx: CanvasRenderingContext2D,
-  sx: number,
-  sy: number,
-  gx: number,
-  gy: number,
   a: Vec2,
   b: Vec2,
-  channel: number,
+  isLeft: boolean
 ) {
-  const center = { x: sx, y: sy }
-  const biteA = 0.16 + tileHash(gx, gy, channel) * 0.08
-  const biteB = 0.3 + tileHash(gx, gy, channel + 1) * 0.12
-  const a1 = lerpPoint(a, center, biteA)
-  const b1 = lerpPoint(b, center, biteA)
-  const a2 = lerpPoint(a, center, biteB)
-  const b2 = lerpPoint(b, center, biteB)
-
-  ctx.fillStyle = shadeRgba(GRASS_PALETTE.base, -1, 0.5)
-  ctx.beginPath()
-  ctx.moveTo(a.x, a.y)
-  ctx.lineTo(b.x, b.y)
-  ctx.lineTo(b1.x, b1.y)
-  ctx.lineTo(a1.x, a1.y)
-  ctx.closePath()
-  ctx.fill()
-
-  for (let i = 0; i < 4; i++) {
-    const t = 0.14 + i * 0.24 + (tileHash(gx, gy, channel + 120 + i) - 0.5) * 0.08
-    const width = 0.04 + tileHash(gx, gy, channel + 140 + i) * 0.08
-    const p0 = lerpPoint(a, b, Math.max(0, t - width))
-    const p1 = lerpPoint(a, b, Math.min(1, t + width))
-    const inner = lerpPoint(lerpPoint(p0, p1, 0.5), center, 0.28 + tileHash(gx, gy, channel + 160 + i) * 0.22)
-    ctx.fillStyle = shadeRgba(GRASS_PALETTE.base, -2, 0.32)
+  const segments = 4
+  const dx = (b.x - a.x) / segments
+  const dy = (b.y - a.y) / segments
+  const thick = 4
+  
+  ctx.save()
+  for (let i = 0; i < segments; i++) {
+    const p1 = { x: a.x + dx * i, y: a.y + dy * i }
+    const p2 = { x: a.x + dx * (i + 1), y: a.y + dy * (i + 1) }
+    
+    const isYellow = (i % 2 === 0)
+    
+    ctx.fillStyle = isYellow ? '#ffd700' : '#111111'
     ctx.beginPath()
-    ctx.moveTo(p0.x, p0.y)
-    ctx.lineTo(p1.x, p1.y)
-    ctx.lineTo(inner.x, inner.y)
+    ctx.moveTo(p1.x, p1.y - thick)
+    ctx.lineTo(p2.x, p2.y - thick)
+    const inward = isLeft ? { x: 3, y: 1.5 } : { x: -3, y: 1.5 }
+    ctx.lineTo(p2.x + inward.x, p2.y - thick + inward.y)
+    ctx.lineTo(p1.x + inward.x, p1.y - thick + inward.y)
+    ctx.closePath()
+    ctx.fill()
+    
+    ctx.fillStyle = isYellow ? '#b8860b' : '#000000'
+    ctx.beginPath()
+    ctx.moveTo(p1.x, p1.y)
+    ctx.lineTo(p2.x, p2.y)
+    ctx.lineTo(p2.x, p2.y - thick)
+    ctx.lineTo(p1.x, p1.y - thick)
     ctx.closePath()
     ctx.fill()
   }
-
-  ctx.fillStyle = shadeRgba(GRASS_PALETTE.light, 0, 0.24)
-  ctx.beginPath()
-  ctx.moveTo(a1.x, a1.y)
-  ctx.lineTo(b1.x, b1.y)
-  ctx.lineTo(b2.x, b2.y)
-  ctx.lineTo(a2.x, a2.y)
-  ctx.closePath()
-  ctx.fill()
-
-  const blades = 8
-  for (let i = 0; i < blades; i++) {
-    const t = (i + 0.35 + tileHash(gx, gy, channel + 10 + i) * 0.3) / blades
-    const edge = lerpPoint(a, b, t)
-    const inPt = lerpPoint(edge, center, 0.1 + tileHash(gx, gy, channel + 30 + i) * 0.18)
-    const h = 2.1 + tileHash(gx, gy, channel + 50 + i) * 3.2
-    const lean = (tileHash(gx, gy, channel + 70 + i) - 0.5) * 2.8
-    grassBlade(
-      ctx,
-      inPt.x,
-      inPt.y,
-      h,
-      lean,
-      shadeRgba(GRASS_PALETTE.shadow, 0, 0.76),
-      tileHash(gx, gy, channel + 90 + i) > 0.72 ? GRASS_PALETTE.yellow : GRASS_PALETTE.light,
-      0.55,
-    )
-  }
+  ctx.restore()
 }
 
 // Detailed dirt path with softened grass edges, scattered cobbles and soil specks.
@@ -909,14 +878,6 @@ export function drawPath(
   const hw = TILE_W / 2
   const hh = TILE_H / 2
 
-  const dirt = buildDirtTexture(ctx)
-  const world = worldToScreen(gx, gy)
-  const camX = sx - world.x
-  const camY = sy - world.y
-  const tx = ((camX % DIRT_TEX) + DIRT_TEX) % DIRT_TEX
-  const ty = ((camY % DIRT_TEX) + DIRT_TEX) % DIRT_TEX
-  dirt.setTransform(new DOMMatrix([1, 0, 0, 1, tx, ty]))
-
   ctx.save()
   ctx.beginPath()
   ctx.moveTo(sx, sy - hh)
@@ -925,63 +886,43 @@ export function drawPath(
   ctx.lineTo(sx - hw, sy)
   ctx.closePath()
   ctx.clip()
-  ctx.fillStyle = dirt
+
+  ctx.fillStyle = '#6b7280'
   ctx.fillRect(sx - hw - 2, sy - hh - 2, TILE_W + 4, TILE_H + 4)
 
-  // embedded cobbles / pebbles with a top highlight and bottom shadow
-  const stones = tileHash(gx, gy, 20) > 0.5 ? 1 + Math.floor(tileHash(gx, gy, 21) * 2) : 0
-  for (let i = 0; i < stones; i++) {
-    const px = sx + (tileHash(gx, gy, 30 + i) - 0.5) * hw * 1.3
-    const py = sy + (tileHash(gx, gy, 50 + i) - 0.5) * hh * 1.3
-    const r = 1 + tileHash(gx, gy, 70 + i) * 1.8
-    // shadow
-    ctx.fillStyle = 'rgba(80,60,40,0.24)'
-    ctx.beginPath()
-    ctx.ellipse(px, py + 0.7, r, r * 0.7, 0, 0, Math.PI * 2)
-    ctx.fill()
-    // stone body
-    const g = tileHash(gx, gy, 90 + i)
-    ctx.fillStyle = g > 0.6 ? '#b7b0a2' : g > 0.3 ? '#a99c87' : '#9b917e'
-    ctx.beginPath()
-    ctx.ellipse(px, py, r, r * 0.7, 0, 0, Math.PI * 2)
-    ctx.fill()
-    // highlight
-    ctx.fillStyle = 'rgba(255,255,255,0.24)'
-    ctx.beginPath()
-    ctx.ellipse(px - r * 0.3, py - r * 0.3, r * 0.4, r * 0.28, 0, 0, Math.PI * 2)
-    ctx.fill()
-  }
-
-  // fine soil speckle
-  for (let s = 0; s < 3; s++) {
+  for (let s = 0; s < 5; s++) {
     const px = sx + (tileHash(gx, gy, 120 + s) - 0.5) * hw * 1.6
     const py = sy + (tileHash(gx, gy, 140 + s) - 0.5) * hh * 1.6
-    ctx.fillStyle = tileHash(gx, gy, 160 + s) > 0.5 ? 'rgba(90,68,44,0.22)' : 'rgba(220,200,160,0.18)'
-    ctx.fillRect(px, py, 1, 1)
+    ctx.fillStyle = tileHash(gx, gy, 160 + s) > 0.5 ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.05)'
+    ctx.fillRect(px, py, 1.5, 1.5)
   }
 
-  // a hairline crack on some tiles
-  if (tileHash(gx, gy, 200) > 0.82) {
-    ctx.strokeStyle = 'rgba(90,70,46,0.28)'
-    ctx.lineWidth = 0.6
-    const cx0 = sx + (tileHash(gx, gy, 201) - 0.5) * hw
-    ctx.beginPath()
-    ctx.moveTo(cx0 - 5, sy - 1)
-    ctx.lineTo(cx0, sy + 1)
-    ctx.lineTo(cx0 + 4, sy - 2)
-    ctx.stroke()
+  if (tileHash(gx, gy, 300) > 0.3) {
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)'
+    ctx.lineWidth = 1.5
+    if (tileHash(gx, gy, 301) > 0.5) {
+      ctx.beginPath()
+      ctx.moveTo(sx - 4, sy - 2)
+      ctx.lineTo(sx + 4, sy + 2)
+      ctx.stroke()
+    } else {
+      ctx.beginPath()
+      ctx.moveTo(sx - 4, sy + 2)
+      ctx.lineTo(sx + 4, sy - 2)
+      ctx.stroke()
+    }
   }
 
   const top = { x: sx, y: sy - hh }
   const right = { x: sx + hw, y: sy }
   const bottom = { x: sx, y: sy + hh }
   const left = { x: sx - hw, y: sy }
-  if (edges.ne) drawPathGrassEdge(ctx, sx, sy, gx, gy, top, right, 300)
-  if (edges.nw) drawPathGrassEdge(ctx, sx, sy, gx, gy, top, left, 400)
-  if (edges.se) drawPathGrassEdge(ctx, sx, sy, gx, gy, right, bottom, 500)
-  if (edges.sw) drawPathGrassEdge(ctx, sx, sy, gx, gy, left, bottom, 600)
-
   ctx.restore()
+
+  if (edges.ne) drawPathCurb(ctx, top, right, false)
+  if (edges.nw) drawPathCurb(ctx, left, top, true)
+  if (edges.se) drawPathCurb(ctx, right, bottom, false)
+  if (edges.sw) drawPathCurb(ctx, bottom, left, true)
 }
 
 const WATER_PALETTE = {
