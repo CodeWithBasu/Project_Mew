@@ -141,15 +141,15 @@ type ShopLayout = {
 // +y), 'right' faces down-right (toward +x). We pick whichever points more
 // toward the center: 'right' when (PLAZA.x - tile.x) > (PLAZA.y - tile.y).
 const SHOP_LAYOUT: Record<string, ShopLayout> = {
-  shoes: { tile: { x: 20, y: 3 }, doorSide: 'left', approach: { x: 23, y: 6 } }, // north -> faces center (down-left)
-  shirts: { tile: { x: 27, y: 3 }, doorSide: 'left', approach: { x: 25, y: 6 } }, // north -> down-left
-  hoodies: { tile: { x: 39, y: 17 }, doorSide: 'left', approach: { x: 34, y: 19 } }, // east -> down-left toward center
+  hospital: { tile: { x: 20, y: 3 }, doorSide: 'left', approach: { x: 23, y: 6 } }, // north -> faces center (down-left)
+  academic: { tile: { x: 27, y: 3 }, doorSide: 'left', approach: { x: 25, y: 6 } }, // north -> down-left
+  hostel: { tile: { x: 39, y: 17 }, doorSide: 'left', approach: { x: 34, y: 19 } }, // east -> down-left toward center
   // south -> the walk swings BELOW the house (y38-39, the visible front), so the
   // dirt wraps the camera-facing corner and leads you around to the door instead
   // of dying hidden underneath the building footprint.
-  pants: { tile: { x: 27, y: 35 }, doorSide: 'right', approach: { x: 25, y: 39 } },
-  hats: { tile: { x: 20, y: 35 }, doorSide: 'right', approach: { x: 23, y: 33 } }, // south -> down-right
-  bags: { tile: { x: 7, y: 17 }, doorSide: 'right', approach: { x: 14, y: 19 } }, // west -> down-right toward center
+  sports: { tile: { x: 27, y: 35 }, doorSide: 'right', approach: { x: 25, y: 39 } },
+  cafeteria: { tile: { x: 20, y: 35 }, doorSide: 'right', approach: { x: 23, y: 33 } }, // south -> down-right
+  library: { tile: { x: 7, y: 17 }, doorSide: 'right', approach: { x: 14, y: 19 } }, // west -> down-right toward center
   info: { tile: { x: 19, y: 16 }, doorSide: 'right', approach: { x: 20, y: 19 } }, // kiosk faces the fountain
 }
 
@@ -2180,7 +2180,7 @@ export function Game({
             className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.08] via-transparent to-black/20"
           />
           <h1 className="relative truncate font-pixel text-lg leading-none text-primary md:text-2xl">
-            {shop?.name ?? 'Fashion District'}
+            {shop?.name ?? 'DRIEMS Campus'}
           </h1>
           {scene !== 'world' && (
             <p className="relative mt-1.5 truncate text-sm text-muted-foreground">

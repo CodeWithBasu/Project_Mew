@@ -96,7 +96,7 @@ export type ShopInfo = { name: string; description: string | null }
 
 // Returns the store's name and description for the in-game HUD.
 export async function getShopInfo(): Promise<ShopInfo> {
-  const fallback: ShopInfo = { name: 'Fashion District', description: null }
+  const fallback: ShopInfo = { name: 'DRIEMS University Campus', description: null }
   if (!shopifyConfigured()) return fallback
   try {
     const data = await storefrontFetch<{ shop: { name: string; description: string | null } }>(
