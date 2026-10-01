@@ -6,9 +6,9 @@ import { GeistPixelSquare } from 'geist/font/pixel'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 Shopify Game Template',
+  title: 'DRIEMS University Virtual Campus',
   description:
-    'A pixel isometric fashion district where every shop is a Shopify collection. Walk, step inside, and shop.',
+    'Explore the virtual campus of DRIEMS University, Cuttack.',
   generator: 'v0.app',
   icons: {
     icon: [
