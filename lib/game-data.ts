@@ -20,7 +20,7 @@ export type Product = {
   swatch: string
 }
 
-export type CategoryIcon = 'shirt' | 'shoe' | 'hoodie' | 'pants' | 'hat' | 'bag' | 'info'
+export type CategoryIcon = 'shirt' | 'shoe' | 'hoodie' | 'pants' | 'hat' | 'bag' | 'info' | 'book' | 'coffee' | 'heart' | 'home' | 'trophy'
 
 // Static, design-time metadata for each shop. The `handle` matches the Shopify
 // collection handle so we can join live products onto each house.
@@ -59,69 +59,69 @@ export function formatPrice(value: number): string {
 // Order + metadata of the six shops. `handle` must match the Shopify collection.
 export const CATEGORY_META: CategoryMeta[] = [
   {
-    id: 'shoes',
-    handle: 'shoes',
-    name: 'Shoes',
-    npcName: 'Sole, the sneaker guide',
-    greeting: 'Fresh pairs just landed. Want something clean, chunky, or fast?',
-    color: '#3e9bd6',
-    icon: 'shoe',
-    tile: { x: 2, y: 2 },
-    swatch: '#3e9bd6',
-  },
-  {
-    id: 'shirts',
-    handle: 'shirts',
-    name: 'Shirts',
-    npcName: 'Tess, the print maker',
-    greeting: 'Soft tees, crisp shirts, and fresh graphics. Pick your fit.',
-    color: '#e0598b',
-    icon: 'shirt',
+    id: 'academic',
+    handle: 'academic',
+    name: 'Academic Block',
+    npcName: 'Prof. Sharma, the Dean',
+    greeting: 'Welcome to the main academic block! Classes are in session.',
+    color: '#059669', // Emerald Green
+    icon: 'book',
     tile: { x: 9, y: 2 },
-    swatch: '#e0598b',
+    swatch: '#059669',
   },
   {
-    id: 'hoodies',
-    handle: 'hoodies',
-    name: 'Hoodies',
-    npcName: 'Hood, the fleece curator',
-    greeting: 'Cozy layer season is always open here. Try a new drop.',
-    color: '#9b6bd6',
-    icon: 'hoodie',
+    id: 'hospital',
+    handle: 'hospital',
+    name: 'Padmini Care',
+    npcName: 'Dr. Das',
+    greeting: 'Padmini Care Multi-Specialty Hospital. How can we help you?',
+    color: '#e11d48', // Rose Red
+    icon: 'heart',
+    tile: { x: 2, y: 2 },
+    swatch: '#e11d48',
+  },
+  {
+    id: 'library',
+    handle: 'library',
+    name: 'Central Library',
+    npcName: 'Ms. Rout, the Librarian',
+    greeting: 'Silence please! Enjoy our collection of engineering books.',
+    color: '#0284c7', // Sky Blue
+    icon: 'book',
     tile: { x: 16, y: 2 },
-    swatch: '#9b6bd6',
+    swatch: '#0284c7',
   },
   {
-    id: 'pants',
-    handle: 'pants',
-    name: 'Pants',
-    npcName: 'Denim, the fit specialist',
-    greeting: 'Straight, relaxed, cargo, or tapered. Let us find the right cut.',
-    color: '#315476',
-    icon: 'pants',
+    id: 'hostel',
+    handle: 'hostel',
+    name: 'Student Hostels',
+    npcName: 'Warden',
+    greeting: 'Welcome to the hostels. Quiet hours start at 10 PM.',
+    color: '#d97706', // Amber
+    icon: 'home',
     tile: { x: 2, y: 9 },
-    swatch: '#315476',
+    swatch: '#d97706',
   },
   {
-    id: 'hats',
-    handle: 'hats',
-    name: 'Hats',
-    npcName: 'Cap, the hat keeper',
-    greeting: 'Caps, beanies, and brims. Top off the look.',
-    color: '#e0c23e',
-    icon: 'hat',
+    id: 'cafeteria',
+    handle: 'cafeteria',
+    name: 'Cafeteria',
+    npcName: 'Bhaiya, the cook',
+    greeting: 'Grab a samosa or a coffee before your next class!',
+    color: '#9333ea', // Purple
+    icon: 'coffee',
     tile: { x: 9, y: 9 },
-    swatch: '#e0c23e',
+    swatch: '#9333ea',
   },
   {
-    id: 'bags',
-    handle: 'bags',
-    name: 'Bags',
-    npcName: 'Carry, the pack designer',
-    greeting: 'Daily carry, weekend carry, everything-in-one carry. Browse the wall.',
-    color: '#e0823e',
-    icon: 'bag',
+    id: 'sports',
+    handle: 'sports',
+    name: 'Sports Ground',
+    npcName: 'Coach',
+    greeting: 'Welcome to the cricket stadium and sports facilities.',
+    color: '#3e9bd6', // Blue
+    icon: 'trophy',
     tile: { x: 16, y: 9 },
-    swatch: '#e0823e',
+    swatch: '#3e9bd6',
   },
 ]
